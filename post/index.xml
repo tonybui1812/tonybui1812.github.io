@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Tony Bui</title>
+    <link>https://tonybui1812.github.io/post/</link>
+    <description>Recent content in Posts on Tony Bui</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Wed, 19 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tonybui1812.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JNDI - Understand</title>
+      <link>https://tonybui1812.github.io/post/java/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tonybui1812.github.io/post/java/</guid>
+      <description>hljs.initHighlightingOnLoad();
+What we have in this post:
+ Overview Use cases Samples Source code  Let&amp;rsquo;s begin
+Overview The Java Naming and Directory Interface (JNDI) is a Java API for a directory service that allows Java software clients to discover and look up data and resources (in the form of Java objects) via a name.
+SPI: Service Provider Interface
+API: Application Programing Interface
+The information looked up via JNDI may be supplied by a server, a flat file, or a database; the choice is up to the implementation used.</description>
+    </item>
+    
+    <item>
+      <title>Oracle Weblogic</title>
+      <link>https://tonybui1812.github.io/post/weblogic/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tonybui1812.github.io/post/weblogic/</guid>
+      <description>WebLogic is a webserver from Oracle.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.29" />
+
+  <title>JNDI - Understand &middot; Tony Bui</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://tonybui1812.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://tonybui1812.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://tonybui1812.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://tonybui1812.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://tonybui1812.github.io/">Tony Bui</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://tonybui1812.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://tonybui1812.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://tonybui1812.github.io/tags/"><i class='fa fa-list fa-fw'></i>Tags</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://tonybui1812.github.io/topics/"><i class='fa fa-list fa-fw'></i>Topics</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://tonybui1812.github.io/contact/"><i class='fa fa-phone fa-fw'></i>Contact</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://tonybui1812.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/b%c3%b9i-tu%e1%ba%a5n-31167653" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://stackoverflow.com/users/10383863/tony-bui" target="_blank"><i class="fa fa-stack-overflow fa-fw"></i>Stack Overflow</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>JNDI - Understand</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>20 Sep 2018, 00:00</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://tonybui1812.github.io/topics/java">java</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-topic" href="https://tonybui1812.github.io/topics/developer">developer</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://tonybui1812.github.io/tags/java-naming-and-directory-interface">Java naming and Directory Interface</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://tonybui1812.github.io/tags/jndi">JNDI</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://tonybui1812.github.io/tags/java">Java</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p><link rel="stylesheet" href="https://tonybui1812.github.io/css/w3css_4_w3.css">
+<link rel="stylesheet" href="https://tonybui1812.github.io/highlight/styles/default.css">
+<script src="https://tonybui1812.github.io/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></p>
+
+<p>What we have in this post:</p>
+
+<ul>
+<li>Overview</li>
+<li>Use cases</li>
+<li>Samples</li>
+<li>Source code</li>
+</ul>
+
+<p>Let&rsquo;s begin</p>
+
+<p><h1>Overview</h1>
+The <b>Java Naming and Directory Interface (JNDI)</b> is a Java API for a directory service that allows Java software clients to discover and look up data and resources (in the form of Java objects) via a name.</p>
+
+<p><img src="https://tonybui1812.github.io/img/basic_jndi_diagram.JPG" /></p>
+
+<p><b>SPI</b>: Service Provider Interface</p>
+
+<p><b>API</b>: Application Programing Interface</p>
+
+<p>The information looked up via JNDI may be supplied by a server, a flat file, or a database; the choice is up to the implementation used.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface" target="_blank">More on Wiki</a></p>
+
+<p>Sun Microsystems first released the JNDI specification on March 10, 1997. As of 2006, the current version is JNDI 1.2.</p>
+
+<p><img src="https://tonybui1812.github.io/img/sun_jw_jndi_orig.gif"></p>
+
+<p><i><b>JNDI architecture</b></i>
+<a href="https://www.javaworld.com/article/2074186/jndi/j2ee-or-j2se--jndi-works-with-both.html" target="_blank">More on JavaWorld</a></p>
+
+<p><h1>Use cases</h1>
+Typical uses of JNDI include:</p>
+
+<ul>
+<li><p>connecting a Java application to an external directory service (such as an address database or an LDAP server)</p></li>
+
+<li><p><b>WebServer JNDI</b>: allowing a Java Servlet to look up configuration information provided by the hosting web container</p>
+
+<ul>
+<li><a href="https://docs.oracle.com/cd/E13222_01/wls/docs100/jndi/over.html" target="_blank"><b>Oracle</b> WebLogic JNDI</a></li>
+<li><a href="https://docs.jboss.org/author/display/AS71/JNDI+Reference" target="_blank"><b>Red Hat</b> JBoss JNDI</a></li>
+<li><a href="https://www.ibm.com/support/knowledgecenter/en/SSAW57_9.0.0/com.ibm.websphere.nd.multiplatform.doc/ae/tnam_develop_naming.html" target="_blank"><b>IBM</b> WebSephere JNDI</a>
+<br /></li>
+</ul></li>
+</ul>
+
+<p><h2>Samples</h2><br />
+<h3>WebServer JNDI</h3></p>
+
+<div class="w3-bar w3-black">
+  <button class="w3-bar-item w3-button tablink w3-red" onclick="openTab(event,'WebLogic','city')">WebLogic</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openTab(event,'JBoss','city')">JBoss</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openTab(event,'WebSephere','city')">WebSephere</button>
+</div>
+
+<div id="WebLogic" class="w3-container city">
+  <pre>
+  <code class="java">
+  Context ctx = null;
+  Hashtable ht = new Hashtable();
+  ht.put(Context.INITIAL_CONTEXT_FACTORY,
+         "weblogic.jndi.WLInitialContextFactory");
+  ht.put(Context.PROVIDER_URL,
+         "t3://localhost:7001");
+
+  try {
+    ctx = new InitialContext(ht);
+    // Use the context in your program
+    try { 
+    ServiceBean bean = (ServiceBean)ctx.lookup("ejb.serviceBean");
+    }catch (NameNotFoundException e) {
+    // binding does not exist
+    }catch (NamingException e) {
+    // a failure occurred
+    }
+  }
+  catch (NamingException e) {
+    // a failure occurred
+  }
+  finally {
+    try {ctx.close();}
+    catch (Exception e) {
+      // a failure occurred
+    }
+  }
+  </code>
+  </pre>
+</div>
+
+<div id="JBoss" class="w3-container city" style="display:none" >
+ <pre> <code class="java">
+final Properties env = new Properties();
+env.put(Context.INITIAL_CONTEXT_FACTORY
+    ,org.jboss.naming.remote.client.InitialContextFactory.class.getName());
+env.put(Context.PROVIDER_URL, "remote://localhost:4447");
+remoteContext = new InitialContext(env);
+MyBean myBean = remoteContext.lookup("java:global/MyBean");
+
+</code></pre>
+</div>
+
+<p><div id="WebSephere" class="w3-container city" style="display:none">
+  <pre><code class="java">
+Hashtable env = new Hashtable();
+env.put(Context.INITIAL_CONTEXT_FACTORY,
+      &ldquo;com.ibm.websphere.naming.WsnInitialContextFactory&rdquo;);
+env.put(Context.PROVIDER_URL, &ldquo;iiop://localhost:2809&rdquo;);
+Context ctx = new InitialContext(env);
+//look up
+Object o = ctx.lookup(&ldquo;com/mycom/MyEJBHome&rdquo;);
+</code>
+</pre>
+</div>
+<h2>Source codes</h2><br />
+<script src="https://tonybui1812.github.io/scripts/tab_function.js" /></p>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://tonybui1812.github.io/post/weblogic/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://tonybui1812.github.io/post/weblogic/">Oracle Weblogic</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="https://tonybui1812.github.io/js/ui.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'Your Google Analytics tracking ID', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+</body>
+</html>
+

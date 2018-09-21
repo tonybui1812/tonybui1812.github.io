@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Topics on Tony Bui</title>
+    <link>https://tonybui1812.github.io/topics/</link>
+    <description>Recent content in Topics on Tony Bui</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 20 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tonybui1812.github.io/topics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Developer</title>
+      <link>https://tonybui1812.github.io/topics/developer/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tonybui1812.github.io/topics/developer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://tonybui1812.github.io/topics/java/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tonybui1812.github.io/topics/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Weblogic</title>
+      <link>https://tonybui1812.github.io/topics/weblogic/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tonybui1812.github.io/topics/weblogic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Webserver</title>
+      <link>https://tonybui1812.github.io/topics/webserver/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tonybui1812.github.io/topics/webserver/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
