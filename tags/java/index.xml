@@ -18,13 +18,20 @@
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tonybui1812.github.io/post/java/</guid>
-      <description>hljs.initHighlightingOnLoad();
-What we have in this post:
- Overview Use cases Samples Source code  Let&amp;rsquo;s begin
-Overview The Java Naming and Directory Interface (JNDI) is a Java API for a directory service that allows Java software clients to discover and look up data and resources (in the form of Java objects) via a name.
-SPI: Service Provider Interface
-API: Application Programing Interface
-The information looked up via JNDI may be supplied by a server, a flat file, or a database; the choice is up to the implementation used.</description>
+      <description>&lt;p&gt;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://tonybui1812.github.io/css/w3css_4_w3.css&#34;&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://tonybui1812.github.io/highlight/styles/default.css&#34;&gt;
+&lt;script src=&#34;https://tonybui1812.github.io/highlight/highlight.pack.js&#34;&gt;&lt;/script&gt;
+&lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;
+What we have in this post:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Overview&lt;/li&gt;
+&lt;li&gt;Use cases&lt;/li&gt;
+&lt;li&gt;Samples&lt;/li&gt;
+&lt;li&gt;Source code&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -267,9 +267,8 @@
   <p><link rel="stylesheet" href="https://tonybui1812.github.io/css/w3css_4_w3.css">
 <link rel="stylesheet" href="https://tonybui1812.github.io/highlight/styles/default.css">
 <script src="https://tonybui1812.github.io/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script></p>
-
-<p>What we have in this post:</p>
+<script>hljs.initHighlightingOnLoad();</script>
+What we have in this post:</p>
 
 <ul>
 <li>Overview</li>
@@ -277,6 +276,8 @@
 <li>Samples</li>
 <li>Source code</li>
 </ul>
+
+<p></p>
 
 <p>Let&rsquo;s begin</p>
 
@@ -295,10 +296,10 @@ The <b>Java Naming and Directory Interface (JNDI)</b> is a Java API for a direct
 
 <p>Sun Microsystems first released the JNDI specification on March 10, 1997. As of 2006, the current version is JNDI 1.2.</p>
 
-<p><img src="https://tonybui1812.github.io/img/sun_jw_jndi_orig.gif"></p>
+<p><img src="https://tonybui1812.github.io/img/sun_jw_jndi_orig.gif">
+<i><b>JNDI architecture</b></i></p>
 
-<p><i><b>JNDI architecture</b></i>
-<a href="https://www.javaworld.com/article/2074186/jndi/j2ee-or-j2se--jndi-works-with-both.html" target="_blank">More on JavaWorld</a></p>
+<p><a href="https://www.javaworld.com/article/2074186/jndi/j2ee-or-j2se--jndi-works-with-both.html" target="_blank">More on JavaWorld</a></p>
 
 <p><h1>Use cases</h1>
 Typical uses of JNDI include:</p>
@@ -317,7 +318,20 @@ Typical uses of JNDI include:</p>
 </ul>
 
 <p><h2>Samples</h2><br />
-<h3>WebServer JNDI</h3></p>
+If you don&rsquo;t have any beans in your web server, you can download my <a href="https://github.com/tonybui1812/EasyEJB">EasyEJB</a> in Github.</p>
+
+<pre>
+This sample use Java EE 6 API Library
+<code class="java">
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+</code>
+</pre>
+
+<p>And try the following codes</p>
+
+<h3>WebServer JNDI</h3>
 
 <div class="w3-bar w3-black">
   <button class="w3-bar-item w3-button tablink w3-red" onclick="openTab(event,'WebLogic','city')">WebLogic</button>
@@ -335,10 +349,10 @@ Typical uses of JNDI include:</p>
   ht.put(Context.PROVIDER_URL,
          "t3://localhost:7001");
   ctx = new InitialContext(ht);
-  ServiceBean bean = (ServiceBean)ctx.lookup("ejb.serviceBean");
-  
+  EasyBean bean = (EasyBean)ctx.lookup("java:global/EasyEJB-War/EasyEJB/EasyBean");  
   </code>
   </pre>
+  
 </div>
 
 <div id="JBoss" class="w3-container city" style="display:none" >
@@ -353,21 +367,79 @@ MyBean myBean = remoteContext.lookup("java:global/MyBean");
 </code></pre>
 </div>
 
-<p><div id="WebSephere" class="w3-container city" style="display:none">
+<div id="WebSephere" class="w3-container city" style="display:none">
   <pre><code class="java">
 Hashtable env = new Hashtable();
 env.put(Context.INITIAL_CONTEXT_FACTORY,
-      &ldquo;com.ibm.websphere.naming.WsnInitialContextFactory&rdquo;);
-env.put(Context.PROVIDER_URL, &ldquo;iiop://localhost:2809&rdquo;);
+      "com.ibm.websphere.naming.WsnInitialContextFactory");
+env.put(Context.PROVIDER_URL, "iiop://localhost:2809");
 Context ctx = new InitialContext(env);
 //look up
-Object o = ctx.lookup(&ldquo;com/mycom/MyEJBHome&rdquo;);
+Object o = ctx.lookup("com/mycom/MyEJBHome");
 </code>
 </pre>
 </div>
-<h2>Source codes</h2><br />
-<script src="https://tonybui1812.github.io/scripts/tab_function.js" /></p>
 
+<p><h2>Source codes</h2><br />
+<pre>
+Here&rsquo; a sample source code for get my EasyBean (on WebLogic Server).
+See my <a href="https://github.com/tonybui1812/EasyEJB">EasyEJB</a>.</p>
+
+<p><code>
+package com.tonybui1812.makeitsimple.easyClient;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Hashtable;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+/**
+ *
+ * @author tonybui1812
+ * Make It Simple
+ */
+public class MyClient {
+    private static void invokeByMethodName(Object obj, String methodName) {
+        Method method = null;
+        try {
+            method = obj.getClass().getMethod(methodName);
+        } catch (SecurityException e) {
+        } catch (NoSuchMethodException e) {
+        }
+        try {
+            Object o = method.invoke(obj, null);
+            System.out.println(o.toString());
+        } catch (IllegalAccessException ex) {
+        } catch (IllegalArgumentException ex) {
+        } catch (InvocationTargetException ex) {
+        }
+    }
+    public static void main(String[] args) {
+        Hashtable env = new Hashtable();
+        env.put(Context.INITIAL_CONTEXT_FACTORY,
+                &ldquo;weblogic.jndi.WLInitialContextFactory&rdquo;);
+        env.put(Context.SECURITY_PRINCIPAL, &ldquo;weblogic&rdquo;);
+        env.put(Context.SECURITY_CREDENTIALS, &ldquo;yourpasswordhere&rdquo;);
+        env.put(Context.PROVIDER_URL, &ldquo;t3://localhost:7001&rdquo;);
+        Context ic = null;
+        try {
+            ic = new InitialContext(env);
+        } catch (NamingException ex) {
+        }
+        try {
+//            Object easyBean = ic.lookup(&ldquo;tonybui1812#com.tonybui1812.makeitsimple.ejb.EasyEJB&rdquo;);
+            Object easyBean = ic.lookup(&ldquo;java:global/EasyEJB-War/EasyEJB/EasyBean&rdquo;);
+            invokeByMethodName(easyBean, &ldquo;getMessage&rdquo;);
+        } catch (NamingException ex) {
+        }
+    }
+}
+</code>
+</pre></p>
+
+<p>Thanks for readings!</p>
+
+<p><script src="https://tonybui1812.github.io/scripts/tab_function.js" /></p>
 
   
 <div class="prev-next-post pure-g">
